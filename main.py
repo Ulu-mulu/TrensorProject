@@ -177,7 +177,7 @@ def on_coords(data):
 
 
 def send_array(array_of_coordinates):
-    # Отсылаем координаты тута
+    # Отсылаем координаты тут
     sio_client.emit('get-coords-ai', array_of_coordinates)
 
 
@@ -186,15 +186,15 @@ def initialize_new_model(folder_name, model_path):
     if model_path == '':
         existing_model = search_model()
         if not existing_model:
-            # sio_client.emit('get-metric-ai', 'no existing model')
+            sio_client.emit('get-metric-ai', 'no existing model')
             return
 
         else:
-            new_model = YOLO(existing_model)  # (f'{folder_name}/runs/detect/train/weights/best.pt')
+            new_model = YOLO(existing_model)  
             new_model.to('cuda')
 
     else:
-        new_model = YOLO(model_path)  # (f'{folder_name}/runs/detect/train/weights/best.pt')
+        new_model = YOLO(model_path) 
         new_model.to('cuda')
 
     print('Finish model initialize')
