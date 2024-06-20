@@ -19,7 +19,7 @@ current_id = -1
 
 drop_stream = False
 
-# sio_client.emit('get-message-ai', {'start': True})
+sio_client.emit('get-message-ai', {'start': True})
 
 typical_folder = 'testdir'
 
@@ -222,7 +222,6 @@ def initialize_new_model(folder_name, model_path):
                 # Write the frame into the model
                 results = new_model.predict(sliced_image, verbose=False)
                 for r in results:
-                    # print(r.masks)
                     boxes = r.boxes
                     for box in boxes:
                         c = box.cls
@@ -277,7 +276,6 @@ def start_record(data):
 
                 if WrittenFrame != 100:
 
-                    # Write the frame into the file 'output.avi'
                     output.write(frame)
                     WrittenFrame = WrittenFrame + 1
 
@@ -344,5 +342,3 @@ def start_record(data):
 
         sio_client.emit('get-message-ai', {'recording': False})
 
-
-# initialize_new_model(typical_folder, model_path='')
